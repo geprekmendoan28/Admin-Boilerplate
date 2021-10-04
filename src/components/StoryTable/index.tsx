@@ -11,7 +11,7 @@ interface TableTypes {
   loading?: boolean;
   handleDelete: (e: string) => void;
   isTags?: boolean;
-  handleEditTags?: any;
+  handleEditTags?: (id:string)=>void;
 }
 
 export default function StoryTable(props: TableTypes) {

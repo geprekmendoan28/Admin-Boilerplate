@@ -126,7 +126,11 @@ function Layouts(props: LayoutTypes) {
           <img src={Logo} alt="logos" />
         </div>
         <Menu theme={currentTheme === 'dark' ? 'dark' : 'light'} selectedKeys={[`${value}`]} mode="inline">
-          {TabsConstant.map((item: any, index: number) => (
+          {TabsConstant.map((item: {
+            name:string,
+            path:string,
+            icons:any
+          }, index: number) => (
             <Menu.Item onClick={() => push(item.path)} key={index.toString()} icon={item.icons}>
               {item.name}
             </Menu.Item>
