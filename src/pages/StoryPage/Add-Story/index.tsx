@@ -3,7 +3,7 @@ import './Add-Story.less';
 import Meta from '@components/Meta';
 import Layout from '@components/Layout';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
-import { Row, Col, Form, Input, Select, Button, Spin, notification } from 'antd';
+import { Row, Col, Form, Input, Select, Button, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -13,6 +13,7 @@ import { UploadsImages } from '@service/images';
 import draftToHtml from 'draftjs-to-html';
 import { createStory } from '@service/stories';
 import { getTags } from '@service/tags';
+import LoadingAdd from '@components/Loading/LoadingAdd';
 
 const { Option } = Select;
 function AddStory() {
@@ -104,17 +105,7 @@ function AddStory() {
         <Layout>
           <div className={`container-add ${currentTheme === 'dark' ? 'dark' : 'light'}`}>
             {isLoading ? (
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 500,
-                  width: '100%',
-                }}
-              >
-                <Spin />
-              </div>
+              <LoadingAdd />
             ) : (
               <Row>
                 <Col span={24}>
@@ -126,7 +117,7 @@ function AddStory() {
                     >
                       <ArrowLeftOutlined style={{ cursor: 'pointer' }} />
                     </div>
-                    <h1 style={{ fontSize: 24, marginLeft: 16 }}>
+                    <h1 className="title-add">
                       <b>Add Story</b>
                     </h1>
                   </Row>
@@ -138,7 +129,7 @@ function AddStory() {
                     </Form.Item>
                     <Form.Item label="Tags" name="tags" rules={[{ required: true, message: 'Please select tags!' }]}>
                       <Select mode="tags" placeholder="Pilih Tags">
-                        {tags.map((item: any, index: number) => (
+                        {tags?.map((item: any, index: number) => (
                           <Option key={index} value={item?.id}>
                             {item.name}
                           </Option>
