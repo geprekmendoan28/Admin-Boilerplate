@@ -3,7 +3,7 @@ import './EditStory.less';
 import Meta from '@components/Meta';
 import Layout from '@components/Layout';
 import { useThemeSwitcher } from 'react-css-theme-switcher';
-import { Row, Col, Form, Input, Select, Button, Spin, notification } from 'antd';
+import { Row, Col, Form, Input, Select, Button,  notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
@@ -14,6 +14,7 @@ import draftToHtml from 'draftjs-to-html';
 import { getStoryById, updateStory } from '@service/stories';
 import { getTags } from '@service/tags';
 import htmlToDraft from 'html-to-draftjs';
+import LoadingAdd from '@components/Loading/LoadingAdd';
 
 const { Option } = Select;
 interface RouteParams {
@@ -140,17 +141,7 @@ function EditStory(props: EditStoryProps) {
         <Layout>
           <div className={`container-add ${currentTheme === 'dark' ? 'dark' : 'light'}`}>
             {isLoading ? (
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 500,
-                  width: '100%',
-                }}
-              >
-                <Spin />
-              </div>
+              <LoadingAdd/>
             ) : (
               <Row>
                 <Col span={24}>

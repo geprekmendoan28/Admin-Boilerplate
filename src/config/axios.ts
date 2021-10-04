@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 const { REACT_APP_BASE_URL } = process.env;
 export const axiosInstance = axios.create({
-  baseURL: REACT_APP_BASE_URL || 'https://apidev.mejacerita.space',
+  baseURL: REACT_APP_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use((config) => {
